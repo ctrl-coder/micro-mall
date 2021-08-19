@@ -1,19 +1,30 @@
 pipeline {
-    def mvnHome = tool 'maven-3.8.2'
-    def dockerImage
-    def imageName = "micro-mall"
-
-    agent { dockerfile true }
+    environment {
+        imagename = "micro-mall"
+        dockerImage = ''
+    }
+    agent {
+        docker {
+            image 'maven:3.8.1-adoptopenjdk-11'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
 
     stages {
         stage('Build Project') {
-            sh "'${mvnHome}/bin/mvn' test"
+            steps {
+                sh "mvn test"
+            }
         }
         stage('Build Project') {
-            sh "'${mvnHome}/bin/mvn' clean install"
+            steps {
+                sh "mvn -B -DskipTests clean package"
+            }
         }
         stage('Build Docker Image') {
-          dockerImage = docker.build("${imageName}:${env.BUILD_NUMBER}")
+            steps {
+                dockerImage = docker.build("${imageName}:${env.BUILD_NUMBER}")
+            }
         }
         stage('Push docker image') {
             steps {
