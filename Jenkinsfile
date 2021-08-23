@@ -5,7 +5,7 @@ pipeline {
     }
     agent any
     tools {
-        maven 'Maven 3.3.9'
+        maven 'Maven 3.8.2'
         jdk 'jdk8'
     }
     stages {
@@ -22,15 +22,15 @@ pipeline {
                 sh "mvn -B -DskipTests clean package"
             }
         }
-        stage('Build Docker Image') {
-            steps {
-                dockerImage = docker.build("${imageName}:${env.BUILD_NUMBER}")
-            }
-        }
-        stage('Push docker image') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+//         stage('Build Docker Image') {
+//             steps {
+//                 dockerImage = docker.build("${imageName}:${env.BUILD_NUMBER}")
+//             }
+//         }
+//         stage('Push docker image') {
+//             steps {
+//                 echo 'Deploying....'
+//             }
+//         }
     }
 }
