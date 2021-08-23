@@ -1,19 +1,36 @@
 pipeline {
     environment {
-        imagename = "micro-mall"
+        imageName = "micro-mall"
         dockerImage = ''
     }
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11'
-            args '-v /root/.m2:/root/.m2'
-        }
+    agent any
+    tools {
+        maven 'Maven-3.8.2'
     }
-
     stages {
-        stage('Build Project') {
-            steps {
-                sh "mvn test"
+        stage('Unit test') {
+            script {
+                echo 'Pulling...' + env.BRANCH_NAME
+                def mvnHome = tool 'Maven-3.8.2'
+                if (isUnix()) {
+                    def targetVersion = getDevVersion()
+                    print 'target build version...'
+                    print targetVersion
+                    sh "mvn -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean package"
+                    def pom = readMavenPom file: 'pom.xml'
+                    // get the current development version
+                    developmentArtifactVersion = "${pom.version}-${targetVersion}"
+                    print pom.version
+                    // execute the unit testing and collect the reports
+                    junit '**//*target/surefire-reports/TEST-*.xml'
+                    archive 'target*//*.jar'
+                } else {
+                    bat(/mvn -Dintegration-tests.skip=true clean package/)
+                    def pom = readMavenPom file: 'pom.xml'
+                    print pom.version
+                    junit '**//*target/surefire-reports/TEST-*.xml'
+                    archive 'target*//*.jar'
+                }
             }
         }
         stage('Build Project') {
