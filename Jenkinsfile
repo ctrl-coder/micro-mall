@@ -1,7 +1,7 @@
 pipeline {
     environment {
         imageName = "micro-mall"
-        registry = "YourDockerhubAccount/YourRepository"
+        registry = "wenyuntiandaydayup/micro-mall"
         registryCredential = 'docker-hub-credentials'
         dockerImage = ''
     }
