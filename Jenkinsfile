@@ -2,7 +2,7 @@ pipeline {
     environment {
         imageName = "micro-mall"
         registry = "YourDockerhubAccount/YourRepository"
-        registryCredential = 'dockerhub-id'
+        registryCredential = 'docker-hub-credentials'
         dockerImage = ''
     }
     agent any
@@ -24,17 +24,11 @@ pipeline {
                 sh "mvn -B -DskipTests clean package"
             }
         }
-        stage('Build Project Image') {
+        stage('Build And Publish Project Image') {
             steps {
                 script {
                     dockerImage = docker.build registry+":$BUILD_NUMBER"
-                }
-            }
-        }
-        stage('Publish Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
+                    docker.withRegistry( 'https://hub.docker.com/repository/docker/wenyuntiandaydayup/micro-mall', registryCredential ) {
                         dockerImage.push()
                     }
                 }
