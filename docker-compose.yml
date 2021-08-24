@@ -26,7 +26,7 @@ services:
 #    network_mode: "host"    #网络模式（默认bridge）
     ports:
       - "9000:8080"
-      - "5000:5000"
+      - "9001:5000"
     environment:
       TZ: Asia/Shanghai
     volumes:

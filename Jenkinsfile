@@ -1,6 +1,8 @@
 pipeline {
     environment {
         imageName = "micro-mall"
+        registry = "YourDockerhubAccount/YourRepository"
+        registryCredential = 'dockerhub-id'
         dockerImage = ''
     }
     agent any
@@ -20,17 +22,22 @@ pipeline {
         stage('Build Project') {
             steps {
                 sh "mvn -B -DskipTests clean package"
+                dockerImage = docker.build registry+":$BUILD_NUMBER"
             }
         }
-//         stage('Build Docker Image') {
-//             steps {
-//                 dockerImage = docker.build("${imageName}:${env.BUILD_NUMBER}")
-//             }
-//         }
-//         stage('Push docker image') {
-//             steps {
-//                 echo 'Deploying....'
-//             }
-//         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Cleaning up') {
+            steps {
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
     }
 }
