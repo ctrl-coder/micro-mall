@@ -22,10 +22,16 @@ pipeline {
         stage('Build Project') {
             steps {
                 sh "mvn -B -DskipTests clean package"
-                dockerImage = docker.build registry+":$BUILD_NUMBER"
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Project') {
+            steps {
+                script {
+                    dockerImage = docker.build registry+":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Publish Docker Image') {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
