@@ -31,3 +31,4 @@ services:
       TZ: Asia/Shanghai
     volumes:
       - '/Volumes/jenkins:/var/jenkins_home'
+      - '/Volumes/jenkins/docker.sock:/var/run/docker.sock'

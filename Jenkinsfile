@@ -1,7 +1,6 @@
 pipeline {
     environment {
         imageName = "micro-mall"
-        registry = "wenyuntiandaydayup/micro-mall"
         registryCredential = 'docker-hub-credentials'
         dockerImage = ''
     }
@@ -27,7 +26,7 @@ pipeline {
         stage('Build And Publish Project Image') {
             steps {
                 script {
-                    dockerImage = docker.build registry+":$BUILD_NUMBER"
+                    dockerImage = docker.build imageName+":$BUILD_NUMBER"
                     docker.withRegistry( 'https://hub.docker.com/repository/docker/wenyuntiandaydayup/micro-mall', registryCredential ) {
                         dockerImage.push()
                     }
@@ -36,7 +35,7 @@ pipeline {
         }
         stage('Cleaning up') {
             steps {
-                sh "docker rmi $registry:$BUILD_NUMBER"
+                sh "docker rmi $rimageName:$BUILD_NUMBER"
             }
         }
     }
