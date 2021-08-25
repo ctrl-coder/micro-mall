@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build imageName+":$BUILD_NUMBER"
-                    docker.withRegistry( 'https://hub.docker.com/repository/docker/wenyuntiandaydayup/micro-mall', registryCredential ) {
+                    docker.withRegistry( '', registryCredential ) {
                         dockerImage.push()
                     }
                 }
