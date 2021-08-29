@@ -1,8 +1,8 @@
-package com.mall.pojo;
+package com.mall.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UmsAdmin implements Serializable {
     private Integer id;
     private	String	username;
     private	String	password;

@@ -1,7 +1,7 @@
 package com.mall.controller;
 
-import com.mall.mapper.UserMapper;
-import com.mall.pojo.User;
+import com.mall.mapper.UmsAdminMapper;
+import com.mall.model.UmsAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +14,10 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
+    private UmsAdminMapper umsAdminMapper;
 
     @GetMapping("")
-    public List<User> list() {
-        return userMapper.queryAll();
+    public List<UmsAdmin> list() {
+        return umsAdminMapper.queryAll();
     }
 }

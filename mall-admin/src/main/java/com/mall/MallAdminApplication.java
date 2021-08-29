@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.mall.mapper")
-public class MainApplication {
+public class MallAdminApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MainApplication.class, args);
+        SpringApplication.run(MallAdminApplication.class, args);
     }
 }

@@ -5,7 +5,13 @@ spring:
     url: jdbc:mysql://localhost:3306/micro_mall?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    locations:
+      - classpath:db/migration  # 默认配置
+    table: ums_flyway_schema_history # 默认配置
+    enabled: on
+    encoding: utf-8
 
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
