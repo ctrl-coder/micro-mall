@@ -1,6 +1,6 @@
 package com.mall.service.impl;
 
-import com.mall.dto.UmsAdminParams;
+import com.mall.dto.UmsAdminParam;
 import com.mall.mapper.UmsAdminMapper;
 import com.mall.model.UmsAdmin;
 import com.mall.service.UmsAdminService;
@@ -18,12 +18,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private UmsAdminMapper umsAdminMapper;
 
     @Override
-    public UmsAdmin register(UmsAdminParams umsAdminParams) {
+    public UmsAdmin register(UmsAdminParam umsAdminParam) {
         UmsAdmin umsAdmin = new UmsAdmin();
-        BeanUtils.copyProperties(umsAdminParams, umsAdmin);
+        BeanUtils.copyProperties(umsAdminParam, umsAdmin);
 
         umsAdmin.setCreateTime(new Date());
-        umsAdmin.setStatus(UmsAdminStatusEnum.ENABLE.getStatus());
+        umsAdmin.setStatus(UmsAdminStatusEnum.ENABLED.getStatus());
 
         // TODO encrypt the password when integrate spring-security
         // String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());

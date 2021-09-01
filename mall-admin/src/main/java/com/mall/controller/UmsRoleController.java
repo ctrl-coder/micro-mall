@@ -1,8 +1,9 @@
 package com.mall.controller;
 
-import com.mall.dto.UmsAdminParam;
-import com.mall.model.UmsAdmin;
-import com.mall.service.UmsAdminService;
+import api.CommonResult;
+import com.mall.dto.UmsRoleParam;
+import com.mall.model.UmsRole;
+import com.mall.service.UmsRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,16 +12,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-@RequestMapping("/admin")
-public class UmsAdminController {
+@RequestMapping("/role")
+public class UmsRoleController {
 
     @Autowired
-    private UmsAdminService adminService;
+    private UmsRoleService umsRoleService;
 
-    @PostMapping("/register")
+    @PostMapping("")
     @ResponseBody
-    public void register(@Validated @RequestBody UmsAdminParam umsAdminParam) {
-        UmsAdmin umsAdmin = adminService.register(umsAdminParam);
+    public CommonResult create(@Validated @RequestBody UmsRoleParam role) {
+        int count = umsRoleService.create(role);
+        if (count > 0) {
+            return CommonResult.success(count);
+        }
+        return CommonResult.failed();
     }
 }

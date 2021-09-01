@@ -3,7 +3,7 @@ package com.mall.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-public class UmsAdminParams {
+public class UmsAdminParam {
     @NotEmpty
     private String username;
     @NotEmpty
