@@ -1,8 +1,7 @@
 package com.mall.controller;
 
-import api.CommonResult;
+import com.mall.api.CommonResult;
 import com.mall.dto.UmsRoleParam;
-import com.mall.model.UmsRole;
 import com.mall.service.UmsRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

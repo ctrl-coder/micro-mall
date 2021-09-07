@@ -14,11 +14,11 @@ public class UmsRoleParam {
 
     private String description;
 
-    // TODO validate the status as number
+    // TODO com.mall.security.validate the status as number
     @NotNull
     private Integer status;  // "启用状态：0->禁用；1->启用"
 
-    // TODO validate the sort as number
+    // TODO com.mall.security.validate the sort as number
     private Integer sort;
 
 

@@ -1,4 +1,4 @@
-package api;
+package com.mall.api;
 
 public class CommonResult<T> {
     private long code;

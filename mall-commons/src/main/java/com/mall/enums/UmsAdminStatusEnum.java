@@ -1,10 +1,10 @@
-package enums;
+package com.mall.enums;
 
-public enum UmsRoleStatusEnum {
-    DISABLED(0),
+public enum UmsAdminStatusEnum {
+    LOCKED(0),
     ENABLED(1);
 
-    UmsRoleStatusEnum(int status) {
+    UmsAdminStatusEnum(int status) {
         this.status = status;
     }
 

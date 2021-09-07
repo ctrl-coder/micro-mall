@@ -4,7 +4,7 @@ import com.mall.dto.UmsAdminParam;
 import com.mall.mapper.UmsAdminMapper;
 import com.mall.model.UmsAdmin;
 import com.mall.service.UmsAdminService;
-import enums.UmsAdminStatusEnum;
+import com.mall.enums.UmsAdminStatusEnum;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

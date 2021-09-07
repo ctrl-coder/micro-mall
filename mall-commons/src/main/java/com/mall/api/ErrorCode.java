@@ -1,4 +1,4 @@
-package api;
+package com.mall.api;
 
 public enum ErrorCode implements IErrorCode {
     SUCCESS(200, "操作成功"),

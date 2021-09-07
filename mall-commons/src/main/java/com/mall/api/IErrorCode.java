@@ -1,4 +1,4 @@
-package api;
+package com.mall.api;
 
 public interface IErrorCode {
     long getCode();
