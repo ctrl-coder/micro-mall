@@ -1,8 +1,11 @@
 package com.mall.api;
 
+import org.springframework.http.HttpStatus;
+
 public enum ErrorCode implements IErrorCode {
     SUCCESS(200, "操作成功"),
-    FAILED(500, "操作失败");
+    FAILED(500, "操作失败"),
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED.value(), "未登录");
 
     private long code;
     private String message;

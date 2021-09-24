@@ -40,6 +40,10 @@ public class CommonResult<T> {
         return new CommonResult<T>(ErrorCode.FAILED.getCode(), message, null);
     }
 
+    public static <T> CommonResult<T> unauthorized() {
+        return new CommonResult<>(ErrorCode.UNAUTHORIZED.getCode(), ErrorCode.UNAUTHORIZED.getMessage(), null);
+    }
+
     public long getCode() {
         return code;
     }

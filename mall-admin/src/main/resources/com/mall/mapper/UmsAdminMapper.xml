@@ -6,6 +6,13 @@
         from ums_admin;
     </select>
 
+    <select id="findByUsername" resultType="com.mall.model.UmsAdmin">
+        select *
+        from ums_admin
+        where username = #{username}
+    </select>
+
+
     <insert id="insert" parameterType="com.mall.model.UmsAdmin">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()

@@ -7,12 +7,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class DefaultUserDetailsService implements UserDetailsService {
-    
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        logger.warn("请配置 SocialUserDetailsService 接口的实现.");
+        logger.warn("请配置 UserDetailsService 接口的实现.");
         throw new UsernameNotFoundException(userId);
     }
 }
