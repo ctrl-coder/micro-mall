@@ -4,11 +4,15 @@ import com.mall.handler.MallAuthenticationFailureHandler;
 import com.mall.handler.MallAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
+@Order(2)
 @Configuration
-public class MallSecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableResourceServer
+public class MallResourceServerConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MallAuthenticationFailureHandler authenticationFailureHandler;

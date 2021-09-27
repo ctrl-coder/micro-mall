@@ -13,6 +13,13 @@ spring:
     enabled: on
     encoding: utf-8
 
+security:
+  oauth2:
+    client:
+      client-id: mall-admin
+      client-secret: mall-admin
+      registered-redirect-uri: http://localhost:9000
+
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
 
